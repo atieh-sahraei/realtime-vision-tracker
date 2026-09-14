@@ -14,7 +14,7 @@ The project combines:
 - CSV logging
 - modular, testable software
 
-It is intentionally a **generic object-tracking system**, not a hand-tracking or pose-estimation product.
+
 
 ## Why this project
 
@@ -172,7 +172,7 @@ outputs/tracking_log.csv
 
 ### Detector abstraction
 
-The included detector is intentionally simple: a green-object detector using HSV thresholding and morphology.
+The included detector is a green-object detector using HSV thresholding and morphology.
 
 The tracker and state logic do **not** depend on that implementation.
 
@@ -206,7 +206,7 @@ It uses confidence and missing-frame history to provide a more stable state:
 TRACKING -> UNCERTAIN -> LOST
 ```
 
-This is deliberately separate from the detector.
+This is separate from the detector.
 
 ## What this project demonstrates
 
@@ -226,25 +226,12 @@ This is deliberately separate from the detector.
 
 ## Limitations
 
-This is a portfolio-sized engineering demo, not a production tracker.
-
 Important limitations:
 
-1. The built-in demo detector is classical image processing; an optional YOLO-style ONNX adapter is included, but model weights are not bundled.
+1. The built-in demo detector is classical image processing; an optional YOLO-style ONNX adapter is included, but model weights are not.
 2. It tracks only one target.
 3. The Kalman model assumes approximately constant velocity.
 4. It does not yet use appearance features for re-identification.
 5. Camera calibration and 3D geometry are outside the current scope.
 
-These limitations are intentional and leave clear paths for future development.
 
-## Useful next improvements
-
-- replace the classical detector with an ONNX neural-network detector
-- add detector/tracker association for multiple objects
-- add optical flow as a secondary motion cue
-- add camera calibration and pixel-to-world geometry
-- add a benchmark script for latency and tracking error
-- add Docker support
-- add GitHub Actions tests
-- add unit tests for Kalman behavior
